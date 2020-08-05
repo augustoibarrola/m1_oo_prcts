@@ -3,13 +3,43 @@ require 'pry'
 #Doctor#name: should return the Doctor’s name, should be able to change its name after creation 
 #Doctor#speciality: should return the Doctor’s speciality, should NOT be able to change its speciality after creation
 #Doctor#years: should return the Doctor’s years, should be able to change its years after creation
+# ============
+#Doctor.all: should return a list of all doctor instances
+#Doctor#greet: should print a greeting that would make any patient feel welcomed!
+#Doctor.find_by_speciality: should take a specialty string as an argument and return a list of the doctors who have that specialty 
+#Doctor.find_by_speciality: should take a specialty string as an argument and return a list of the doctors who have that specialty 
 
 class Doctor
+    attr_accessor :name, :years
+    attr_reader :speciality
+    @@doctor = Array.new
+
     def initialize name, speciality, years=1
         @name = name
         @speciality = speciality
-        @years = years=1
+        @years = years
+        @@doctor << self
     end
-    attr_accessor :name, :years
-    attr_reader :speciality
+
+    def greet patient_name
+        "Welcome to our hospital, #{patient_name}. You're in great hands."
+    end
+   
+    def self.all
+        @@doctor
+    end
+
+    def self.find_by_specialty specialty
+        Doctor.all.filter do |dr_specialty|
+            dr_specialty.speciality == specialty
+        end
+    end
+
 end
+binding.pry
+
+steven = Doctor.new "Steven", "Heart Surgeon", 10
+johanna  = Doctor.new "Johanna", "Brain Surgeon", 12
+annie = Doctor.new "Annie", "Heart Surgeon", 23
+paulo = Doctor.new "Paulo", "Nutritionist", 8
+
