@@ -30,11 +30,6 @@ end
 
 sophie = Patient.new "Sophie", 18
 albert = Patient.new "Albert", 20
-albert.inquire_appt_ready
-
-puts albert.impatience
-albert.inquire_appt_ready
-puts albert.impatience
 
 rebecca = Patient.new "Rebecca", 7
 christof = Patient.new "Christof", 82
