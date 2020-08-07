@@ -35,11 +35,23 @@ class Doctor
         end
     end
 
+    def patients #an array o all patients
+    end
+
 end
-binding.pry
+#binding.pry
 
 steven = Doctor.new "Steven", "Heart Surgeon", 10
 johanna  = Doctor.new "Johanna", "Brain Surgeon", 12
 annie = Doctor.new "Annie", "Heart Surgeon", 23
 paulo = Doctor.new "Paulo", "Nutritionist", 8
 
+# Associations:
+# A Patient should belong to a Doctor
+# A Doctor can have many Patients
+# Patient
+
+# Doctor
+# Doctor#patients should return an array of all the Patients for that doctor
+# Doctor#dischange_patient should set a patient’s doctor to nil, only if the patient belongs to the current doctor
+# Doctor#transfer_patient should change a patient’s doctor to another doctor. This should only work if the patient belongs to the current doctor.

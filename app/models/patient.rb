@@ -1,4 +1,5 @@
 require 'pry'
+
 #Patient#initialize: should initialize with a name (string) and age (integer)
 #Patient#name: should return the Patient’s name, should be able to change its name after creation
 #Patient#age: should return the Patient’s age, should be able to change its age after creation
@@ -8,16 +9,37 @@ require 'pry'
 #Patient#inquire_appt_ready: should print that the doctor will be ready soon and increase patient impatience by 1
 #Patient.all: should return a list of all patient instances
 class Patient
-    attr_accessor :name, :age
-    def initialize name, age, impatience=0
+    attr_accessor :name, :age 
+    @@patients = Array.new
+
+    def initialize name, age, impatience=0, doctor=nil
         @name = name
         @age = age
         @impatience = impatience
+        @doctor = doctor
+        @@patients << self
     end
 
     def inquire_appt_ready 
         puts "The doctor should be seeing you shortly"
-        increase_impatience
+        self.increase_impatience
+    end
+
+    def self.all 
+        @@patients
+    end
+
+    def doctor
+        @doctor
+    end
+
+    def doctor= new_doctor
+        @doctor = new_doctor
+    end
+
+    def change_doctors
+        binding.pry
+        self.doctor = Doctor.all.shuffle 
     end
     
 private
@@ -27,8 +49,11 @@ private
 
 end
 
+#Patient#doctor should return the Doctor instance for this patient
+#Patient#change_doctors should take a doctor instance and update the patient’s doctor
 
 sophie = Patient.new "Sophie", 18
 albert = Patient.new "Albert", 20
 rebecca = Patient.new "Rebecca", 7
 christof = Patient.new "Christof", 82
+#binding.pry

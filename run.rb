@@ -1,5 +1,5 @@
-require_relative `./app/models/patient.rb`
-require_relative `./app/models/doctor.rb` 
+require_relative "./app/models/patient.rb"
+require_relative "./app/models/doctor.rb"
         #=> these aren't working for me :< any tips?
 
 steven = Doctor.new "Steven", "Heart Surgeon", 10
