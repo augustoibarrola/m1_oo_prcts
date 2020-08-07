@@ -9,10 +9,15 @@ require 'pry'
 #Patient#inquire_appt_ready: should print that the doctor will be ready soon and increase patient impatience by 1
 #Patient.all: should return a list of all patient instances
 class Patient
+<<<<<<< HEAD
     attr_accessor :name, :age 
     @@patients = Array.new
 
     def initialize name, age, impatience=0, doctor=nil
+=======
+    attr_accessor :name, :age, :impatience
+    def initialize name, age, impatience=0
+>>>>>>> 1c95df5b6ae7d08adc5d3137f3b44fff365808ea
         @name = name
         @age = age
         @impatience = impatience
@@ -54,6 +59,7 @@ end
 
 sophie = Patient.new "Sophie", 18
 albert = Patient.new "Albert", 20
+
 rebecca = Patient.new "Rebecca", 7
 christof = Patient.new "Christof", 82
 #binding.pry
