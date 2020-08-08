@@ -7,18 +7,19 @@ require 'pry'
 #Doctor.all: should return a list of all doctor instances
 #Doctor#greet: should print a greeting that would make any patient feel welcomed!
 #Doctor.find_by_speciality: should take a specialty string as an argument and return a list of the doctors who have that specialty 
-#Doctor.find_by_speciality: should take a specialty string as an argument and return a list of the doctors who have that specialty 
 
 class Doctor
-    attr_accessor :name, :years
+    attr_accessor :name, :years, :patients
     attr_reader :speciality
     @@doctor = Array.new
 
-    def initialize name, speciality, years=1
+    def initialize name, speciality, years=1, patients=nil
         @name = name
         @speciality = speciality
         @years = years
+        @patients = patients
         @@doctor << self
+
     end
 
     def greet patient_name
@@ -35,23 +36,23 @@ class Doctor
         end
     end
 
-    def patients #an array o all patients
+    def patients 
+        @patients
+    end
+
+    def discharge_patient
+            if patient.doctor == self
+                patient.doctor = nil
+            end
+    end
+
+    def transfer_patient patients, new_doctor
+    if patients.doctor == self
+        patients.doctor = new_doctor
+    end
     end
 
 end
-#binding.pry
 
-steven = Doctor.new "Steven", "Heart Surgeon", 10
-johanna  = Doctor.new "Johanna", "Brain Surgeon", 12
-annie = Doctor.new "Annie", "Heart Surgeon", 23
-paulo = Doctor.new "Paulo", "Nutritionist", 8
 
-# Associations:
-# A Patient should belong to a Doctor
-# A Doctor can have many Patients
-# Patient
 
-# Doctor
-# Doctor#patients should return an array of all the Patients for that doctor
-# Doctor#dischange_patient should set a patient’s doctor to nil, only if the patient belongs to the current doctor
-# Doctor#transfer_patient should change a patient’s doctor to another doctor. This should only work if the patient belongs to the current doctor.

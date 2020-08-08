@@ -8,45 +8,34 @@ require 'pry'
 #Patient#increase_impatience: should be a private method that increases impatience by 1 
 #Patient#inquire_appt_ready: should print that the doctor will be ready soon and increase patient impatience by 1
 #Patient.all: should return a list of all patient instances
-class Patient
-<<<<<<< HEAD
-    attr_accessor :name, :age 
-    @@patients = Array.new
 
-    def initialize name, age, impatience=0, doctor=nil
-=======
-    attr_accessor :name, :age, :impatience
-    def initialize name, age, impatience=0
->>>>>>> 1c95df5b6ae7d08adc5d3137f3b44fff365808ea
+#Patient#doctor should return the Doctor instance for this patient
+#Patient#change_doctors should take a doctor instance and update the patient’s doctor
+
+class Patient
+    @@patients = []
+    attr_accessor :name, :age, :doctor 
+    def initialize name, age, doctor=nil 
         @name = name
         @age = age
-        @impatience = impatience
+        @impatience = 0
         @doctor = doctor
         @@patients << self
     end
 
     def inquire_appt_ready 
         puts "The doctor should be seeing you shortly"
-        self.increase_impatience
+        increase_impatience
     end
 
     def self.all 
         @@patients
     end
 
-    def doctor
-        @doctor
+    def change_doctors new_doctor
+        self.doctor = new_doctor
     end
 
-    def doctor= new_doctor
-        @doctor = new_doctor
-    end
-
-    def change_doctors
-        binding.pry
-        self.doctor = Doctor.all.shuffle 
-    end
-    
 private
     def increase_impatience
         @impatience += 1
@@ -54,12 +43,8 @@ private
 
 end
 
-#Patient#doctor should return the Doctor instance for this patient
-#Patient#change_doctors should take a doctor instance and update the patient’s doctor
 
-sophie = Patient.new "Sophie", 18
-albert = Patient.new "Albert", 20
 
-rebecca = Patient.new "Rebecca", 7
-christof = Patient.new "Christof", 82
-#binding.pry
+
+
+
