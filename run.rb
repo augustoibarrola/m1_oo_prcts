@@ -1,6 +1,7 @@
 require 'pry'
 require_relative "./app/models/patient.rb"
 require_relative "./app/models/doctor.rb"
+require_relative "./app/models/appointment.rb"
 
 sophie = Patient.new "Sophie", 18
 albert = Patient.new "Albert", 20

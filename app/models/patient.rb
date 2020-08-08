@@ -14,12 +14,13 @@ require 'pry'
 
 class Patient
     @@patients = []
-    attr_accessor :name, :age, :doctor 
+    attr_accessor :name, :age, :appointment #:doctor 
     def initialize name, age, doctor=nil 
         @name = name
         @age = age
         @impatience = 0
         @doctor = doctor
+        @appointment = []
         @@patients << self
     end
 
@@ -32,9 +33,23 @@ class Patient
         @@patients
     end
 
-    def change_doctors new_doctor
-        self.doctor = new_doctor
+    def appointment_with doctor
+        @appointment = Appointment.new self, doctor
     end
+
+    def appointments
+        your_appts = []
+        Appointment.all.select do |x| 
+           if @name= self
+            your_appts << x
+            end
+        end
+    end
+
+
+    # def change_doctors new_doctor
+    #     self.doctor = new_doctor
+    # end
 
 private
     def increase_impatience
