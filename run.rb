@@ -13,4 +13,11 @@ johanna  = Doctor.new "Johanna", "Brain Surgeon", 12
 annie = Doctor.new "Annie", "Heart Surgeon", 23
 paulo = Doctor.new "Paulo", "Nutritionist", 8
 
+sophie.appointment_with johanna
+albert.appointment_with paulo
+christof.appointment_with annie
+rebecca.appointment_with steven
+albert.appointment_with steven
+rebecca.appointment_with annie
+
 binding.pry

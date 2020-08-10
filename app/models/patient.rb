@@ -1,63 +1,54 @@
 require 'pry'
 
-#Patient#initialize: should initialize with a name (string) and age (integer)
-#Patient#name: should return the Patient’s name, should be able to change its name after creation
-#Patient#age: should return the Patient’s age, should be able to change its age after creation
-# ============
-#Patients should be initialized with an instance variable, impatience, set to 0
-#Patient#increase_impatience: should be a private method that increases impatience by 1 
-#Patient#inquire_appt_ready: should print that the doctor will be ready soon and increase patient impatience by 1
-#Patient.all: should return a list of all patient instances
-
-#Patient#doctor should return the Doctor instance for this patient
-#Patient#change_doctors should take a doctor instance and update the patient’s doctor
-
 class Patient
     @@patients = []
-    attr_accessor :name, :age, :appointment, :doctor 
+    attr_accessor :name, :age, :appointment, :doctor
     def initialize name, age 
         @name = name
         @age = age
         @impatience = 0
         @doctor = ""
-        @appointment = ""
+        @appointment = []
         @@patients << self
     end
 
     def inquire_appt_ready 
-        puts "The doctor should be seeing you shortly"
+    puts "Nurse: The doctor should be seeing you shortly.\n#{self.name}: Sure they will.\n  #{self.name}'s impatience increased by 1.'"
         increase_impatience
+    end
+    
+    def doctors
+        Appointment.all.select { |x| x.patient == self }
+    end
+
+    def appointment_with doctor 
+        @appointment = Appointment.new self, doctor
+        self.doctor= doctor
+        doctor.patient = self
+        doctor.appointment <<  self.appointment
+    end
+    #<<==QUESTION==>> 
+    #is the method above not the same thing as #Patient#create_appointment? 
+
+    def appointments
+        Appointment.all.select { |x| x.patient == self }
     end
 
     def self.all 
         @@patients
     end
 
-    def appointment_with doctor
-        @appointment = Appointment.new self, doctor
-        self.doctor= doctor
-    end
-
-    def appointments
-        your_appts = []
-        Appointment.all.select do |x| 
-           if @name= self
-            your_appts << x
-            end
-        end
-    end
-
-
-    # def change_doctors new_doctor
-    #     self.doctor = new_doctor
-    # end
-
 private
+
     def increase_impatience
         @impatience += 1
     end
 
 end
+
+ # def change_doctors new_doctor
+    #     self.doctor = new_doctor
+    # end
 
 
 
